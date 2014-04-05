@@ -9,4 +9,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <com.onyas.vdun.RingView
+            android:layout_width="@dimen/ring_view_width"
+            android:layout_height="@dimen/ring_view_height" >
+        </com.onyas.vdun.RingView>
+    </FrameLayout>
+
 </LinearLayout>
