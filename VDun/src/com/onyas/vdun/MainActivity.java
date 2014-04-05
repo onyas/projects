@@ -1,15 +1,39 @@
 package com.onyas.vdun;
 
-import android.os.Bundle;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+	private int REFRESH_INTERVAL_SEC = 60; //间隔时间（秒）
+	private String secretStr = "com.onyas";
+	private long timeOffset = 0;
+	
+	private TextView tv_otp;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		tv_otp = (TextView) findViewById(R.id.tv_otp);
+		
+		try {
+			Mac mac = Mac.getInstance("HMACSHA1");
+			mac.init(new SecretKeySpec(secretStr.getBytes(), ""));
+			PasscodeGenerator pcg = new PasscodeGenerator(mac, 6, REFRESH_INTERVAL_SEC);//6表示6位动态密码
+			String otpCode = pcg.generateTimeoutCode(true,timeOffset);
+			tv_otp.setText(otpCode);
+			//timeOffset是时间偏移量
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
 	}
 
 	@Override
