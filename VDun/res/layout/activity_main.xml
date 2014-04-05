@@ -18,6 +18,13 @@
             android:layout_width="@dimen/ring_view_width"
             android:layout_height="@dimen/ring_view_height" >
         </com.onyas.vdun.RingView>
+
+        <com.onyas.vdun.CountdownIndicator
+            android:id="@+id/pb_progress"
+            android:layout_width="@dimen/countdown_indicator_width"
+            android:layout_height="@dimen/countdown_indicator_height"
+            android:layout_gravity="center" >
+        </com.onyas.vdun.CountdownIndicator>
     </FrameLayout>
 
 </LinearLayout>
